@@ -50,6 +50,8 @@ public class ResidenceFragment extends Fragment implements TextWatcher,
   private Residence   residence;
   private Portfolio   portfolio;
 
+  private String emailAddress = "";
+  
   MyRentApp app;
 
   @Override
@@ -134,9 +136,10 @@ public class ResidenceFragment extends Fragment implements TextWatcher,
     else
     if (requestCode == REQUEST_CONTACT)
     {
-      String name = ContactHelper.getContact(getActivity(), data);
-      residence.tenant = name;
-      tenantButton.setText(name);
+        String name = ContactHelper.getContact(this, data);
+        emailAddress = ContactHelper.getEmail(this, data);
+        tenantButton.setText(name + " : " + emailAddress);
+        residence.tenant = name;
     }
   }
 
@@ -177,7 +180,7 @@ public class ResidenceFragment extends Fragment implements TextWatcher,
           tenantButton.setText("Tenant: "+residence.tenant);
         }
         break;
-      case R.id.residence_reportButton : sendEmail(getActivity(), "", getString(R.string.residence_report_subject), residence.getResidenceReport(getActivity()));
+      case R.id.residence_reportButton : sendEmail(getActivity(), "emailAddress", getString(R.string.residence_report_subject), residence.getResidenceReport(getActivity()));
         break;
 
     }
