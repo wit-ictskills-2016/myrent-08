@@ -13,6 +13,7 @@ public class ResidenceListActivity extends AppCompatActivity
     super.onCreate(savedInstanceState);
     setContentView(R.layout.fragment_container);
 
+    
     FragmentManager manager = getSupportFragmentManager();
     Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
     if (fragment == null)

@@ -73,9 +73,6 @@ public class ResidenceFragment extends Fragment implements TextWatcher,
     super.onCreateView(inflater,  parent, savedInstanceState);
     View v = inflater.inflate(R.layout.fragment_residence, parent, false);
 
-    ResidenceActivity residenceActivity = (ResidenceActivity)getActivity();
-    residenceActivity.actionBar.setDisplayHomeAsUpEnabled(true);
-
     addListeners(v);
     updateControls(residence);
 
@@ -136,8 +133,8 @@ public class ResidenceFragment extends Fragment implements TextWatcher,
     else
     if (requestCode == REQUEST_CONTACT)
     {
-        String name = ContactHelper.getContact(this, data);
-        emailAddress = ContactHelper.getEmail(this, data);
+        String name = ContactHelper.getContact(getActivity(), data);
+        emailAddress = ContactHelper.getEmail(getActivity(), data);
         tenantButton.setText(name + " : " + emailAddress);
         residence.tenant = name;
     }
